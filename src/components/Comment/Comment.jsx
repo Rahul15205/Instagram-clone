@@ -1,3 +1,4 @@
+import React from 'react';
 import { Avatar, Flex, Link, Skeleton, SkeletonCircle, Text } from "@chakra-ui/react";
 import useGetUserProfileById from "../../hooks/useGetUserProfileById";
 import { Link as RouterLink } from 'react-router-dom'
