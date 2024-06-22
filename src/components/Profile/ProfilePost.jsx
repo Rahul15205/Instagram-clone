@@ -1,3 +1,4 @@
+import React from 'react';
 import { Avatar, Button, Divider, Flex, GridItem, Image, Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay, Text, VStack, useDisclosure } from "@chakra-ui/react";
 import {AiFillHeart} from "react-icons/ai";
 import {FaComment} from 'react-icons/fa';
