@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box, Button, Flex, Input, InputGroup, InputRightElement, Text, useDisclosure } from "@chakra-ui/react";
 import { CommentLogo, NotificationsLogo, UnlikeLogo } from "../../assets/constants";
 import { useState } from "react";
