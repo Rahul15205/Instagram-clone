@@ -1,3 +1,4 @@
+import React from 'react';
 import { Container, Flex, Skeleton, SkeletonCircle, Link, Text, VStack } from "@chakra-ui/react"
 import ProfileHeader from "../../components/Profile/ProfileHeader"
 import ProfileTabs from "../../components/Profile/ProfileTabs"
