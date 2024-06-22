@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box, Flex, Grid, Skeleton, Text, VStack } from "@chakra-ui/react";
 import ProfilePost from "./ProfilePost";
 import useGetUserPosts from "../../hooks/useGetUserPosts";
