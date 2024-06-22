@@ -1,3 +1,4 @@
+import React from 'react';
 import { Container, Flex , Box } from "@chakra-ui/react";
 import Feedposts from "../../components/Feedposts/Feedposts";
 import SuggestedUsers from "../../components/SuggestedUsers/SuggestedUsers";
