@@ -1,3 +1,4 @@
+import React from 'react';
 import { Flex, Image, Text } from "@chakra-ui/react";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { auth, firestore } from "../../firebase/firebase";
