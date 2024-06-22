@@ -1,3 +1,4 @@
+import React from 'react';
 export const InstagramLogo = () => (
 	<svg
 		aria-label='Instagram'
