@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box, Image } from "@chakra-ui/react";
 import PostHeader from "./PostHeader";
 import useGetUserProfileById from "../../hooks/useGetUserProfileById";
