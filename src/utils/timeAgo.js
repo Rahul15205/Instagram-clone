@@ -1,3 +1,4 @@
+import React from 'react';
 export const timeAgo = (timestamp) => {
     const now = Date.now();
     const secondsAgo = Math.floor((now - timestamp) / 1000);
