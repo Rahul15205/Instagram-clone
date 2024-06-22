@@ -1,3 +1,4 @@
+import React from 'react';
 import { Tooltip,Flex,Link,Box, Button } from "@chakra-ui/react"
 import { Link as RouterLink } from "react-router-dom"
 import { InstagramLogo, InstagramMobileLogo } from "../../assets/constants";
