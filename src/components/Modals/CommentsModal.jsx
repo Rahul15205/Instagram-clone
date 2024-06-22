@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button, Flex, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay } from '@chakra-ui/react'
 import Comment from "../Comment/Comment";
 import usePostComment from '../../hooks/usePostComment';
