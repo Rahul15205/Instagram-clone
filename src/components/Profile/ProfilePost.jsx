@@ -1,4 +1,3 @@
-import React from 'react';
 import { Avatar, Button, Divider, Flex, GridItem, Image, Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay, Text, VStack, useDisclosure } from "@chakra-ui/react";
 import {AiFillHeart} from "react-icons/ai";
 import {FaComment} from 'react-icons/fa';
@@ -85,7 +84,14 @@ const ProfilePost = ({post}) => {
             </Flex>
           </Flex>
         </Flex>
-        <Image src={post.imageURL} alt='profile post' w={"100%"} h={"100%"} objectFit={"cover"} />
+        {post.imageURL ? (
+          <Image src={post.imageURL} alt={"FEED POST IMAGE"} />
+        ) : (
+          post.fileURL && (
+            <video src={post.fileURL} type="video/mp4" />
+
+          )
+        )}
       </GridItem>
       <Modal isOpen={isOpen} onClose={onClose} isCentered={true} size={{base:"3xl",md:"5xl"}}>
         <ModalOverlay />
@@ -102,7 +108,14 @@ const ProfilePost = ({post}) => {
                 justifyContent={"center"}
                 alignItems={"center"}
               >
-                <Image src={post.imageURL} alt="profile post" />
+                {post.imageURL ? (
+                  <Image src={post.imageURL} alt={"FEED POST IMAGE"} />
+                ) : (
+                  post.fileURL && (
+                    <video controls src={post.fileURL} type="video/mp4" />
+
+                  )
+                )}
               </Flex>
               <Flex flex={1} flexDir={"column"} px={10} display={{base:"none",md:"flex"}}>
                 <Flex alignItems={"center"} justifyContent={"space-between"}>
