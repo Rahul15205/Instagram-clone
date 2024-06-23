@@ -1,5 +1,6 @@
-import React from 'react';
 import { Box, Image } from "@chakra-ui/react";
+import React from 'react';
+
 import PostHeader from "./PostHeader";
 import useGetUserProfileById from "../../hooks/useGetUserProfileById";
 import PostFooter from "./PostFooter";
@@ -16,7 +17,14 @@ const Feedpost = ({ post }) => {
     <>
       <PostHeader post={post} creatorProfile={userProfile} />
       <Box my={2} borderRadius={4} overflow={"hidden"}>
-        <Image src={post.imageURL} alt={"FEED POST IMAGE"} />
+        {post.imageURL ? (
+          <Image src={post.imageURL} alt={"FEED POST IMAGE"} />
+        ) : (
+          post.fileURL && (
+            <video controls src={post.fileURL} type="video/mp4" />
+
+          )
+        )}
       </Box>
       <PostFooter post={post} creatorProfile={userProfile} />
     </>
