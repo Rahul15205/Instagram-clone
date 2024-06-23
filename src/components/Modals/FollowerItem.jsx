@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Flex, Avatar, Text, Button } from '@chakra-ui/react';
 import useFollowUser from '../../hooks/useFollowUser';
 import useAuthStore from '../../store/authStore';
+import {Link as RouterLink} from 'react-router-dom';
 
 const FollowerItem = ({ user,setUser}) => {
   const {isFollowing,isUpdating,handleFollowUser} = useFollowUser(user.uid);
@@ -22,9 +23,13 @@ const FollowerItem = ({ user,setUser}) => {
   return (
     <Flex alignItems="center" justifyContent="space-between" p={2} borderBottom="1px solid gray">
       <Flex alignItems="center">
+      <Link as={RouterLink} to={`/${user.username}`}>
         <Avatar src={user.profilePicURL} size="md" />
+      </Link>
         <Box ml={3}>
-          <Text fontWeight="bold">{user.username}</Text>
+          <Link as={RouterLink} to={`/${user.username}`}>
+            <Text fontWeight="bold">{user.username}</Text>
+          </Link>
           <Text fontSize="sm" color="gray.500">{user.fullName}</Text>
         </Box>
       </Flex>
