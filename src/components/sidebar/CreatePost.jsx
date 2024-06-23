@@ -1,8 +1,9 @@
+import React from 'react';
 import { Box, Button, CloseButton, Flex, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Textarea, Tooltip, useDisclosure } from "@chakra-ui/react";
 import { CreatePostLogo } from "../../assets/constants";
 import { BsFillImageFill } from 'react-icons/bs';
 import { useState, useRef } from "react";
-import usePreviewMedia from "../../hooks/usePreviewMedia";  // Updated hook
+import usePreviewMedia from "../../hooks/usePreviewMedia";
 import useShowToast from "../../hooks/useShowToast";
 import useAuthStore from "../../store/authStore";
 import usePostStore from "../../store/postStore";
