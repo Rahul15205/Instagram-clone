@@ -3,6 +3,7 @@ import { Box, Flex, Avatar, Text, Button } from '@chakra-ui/react';
 import useFollowUser from '../../hooks/useFollowUser';
 import useAuthStore from '../../store/authStore';
 import {Link as RouterLink} from 'react-router-dom';
+import {Link} from "react-router-dom";
 
 const FollowerItem = ({ user,setUser}) => {
   const {isFollowing,isUpdating,handleFollowUser} = useFollowUser(user.uid);
