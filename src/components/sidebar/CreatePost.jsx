@@ -1,4 +1,5 @@
 import React from 'react';
+import usePreviewMedia from './usePreviewMedia';
 import { Box, Button, CloseButton, Flex, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Textarea, Tooltip, useDisclosure } from "@chakra-ui/react";
 import { CreatePostLogo } from "../../assets/constants";
 import { BsFillImageFill } from 'react-icons/bs';
