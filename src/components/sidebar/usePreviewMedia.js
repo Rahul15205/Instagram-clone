@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import React from 'react';
-import useShowToast from './useShowToast';
+import useShowToast from '../../hooks/useShowToast';
 
 const usePreviewMedia = () => {
   const [selectedFile, setSelectedFile] = useState(null);
