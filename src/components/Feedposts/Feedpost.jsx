@@ -17,13 +17,10 @@ const Feedpost = ({ post }) => {
     <>
       <PostHeader post={post} creatorProfile={userProfile} />
       <Box my={2} borderRadius={4} overflow={"hidden"}>
-        {post.imageURL ? (
-          <Image src={post.imageURL} alt={"FEED POST IMAGE"} />
+        {post.fileURL  ?  (
+          <video src={post.fileURL} controls style={{ maxWidth: "100%" }}/>
         ) : (
-          post.fileURL && (
-            <video controls src={post.fileURL} type="video/mp4" />
-
-          )
+          <Image src={post.imageURL}  alt='FEED POST IMAGE' />
         )}
       </Box>
       <PostFooter post={post} creatorProfile={userProfile} />
