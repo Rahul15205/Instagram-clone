@@ -110,7 +110,7 @@ const ProfilePost = ({post}) => {
                   <Image src={post.imageURL} alt={"FEED POST IMAGE"} />
                 ) : (
                   
-                    <video controls src={post.fileURL} type="video/mp4" />
+                    <video controls src={post.videoURL} type="video/mp4" />
 
                   
                 )}
