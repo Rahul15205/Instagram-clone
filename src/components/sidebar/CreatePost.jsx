@@ -1,9 +1,8 @@
-import React from 'react';
-import usePreviewMedia from './usePreviewMedia';
 import { Box, Button, CloseButton, Flex, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Textarea, Tooltip, useDisclosure } from "@chakra-ui/react";
 import { CreatePostLogo } from "../../assets/constants";
 import { BsFillImageFill } from 'react-icons/bs';
 import { useState, useRef } from "react";
+import usePreviewMedia from "./usePreviewMedia";
 import useShowToast from "../../hooks/useShowToast";
 import useAuthStore from "../../store/authStore";
 import usePostStore from "../../store/postStore";
@@ -11,19 +10,19 @@ import useUserProfileStore from "../../store/userProfileStore";
 import { useLocation } from "react-router-dom";
 import { addDoc, arrayUnion, collection, doc, updateDoc } from "firebase/firestore";
 import { firestore, storage } from "../../firebase/firebase";
-import { getDownloadURL, ref, uploadString } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 const CreatePost = () => {
     const {isOpen, onOpen, onClose} = useDisclosure();
     const [caption, setCaption] = useState('');
     const fileRef = useRef(null);
-    const { selectedFile, handleMediaChange, setSelectedFile, mediaType } = usePreviewMedia();  // Updated hook
+    const { selectedFile, handleMediaChange, setSelectedFile, mediaType } = usePreviewMedia();
     const { isLoading, handleCreatePost } = useCreatePost();
     const showToast = useShowToast();
-    
+
     const handlePostCreation = async () => {
         try {
-            await handleCreatePost(selectedFile, caption, mediaType);  // Pass mediaType
+            await handleCreatePost(selectedFile, caption, mediaType);
             onClose();
             setCaption("");
             setSelectedFile(null);
@@ -65,7 +64,7 @@ const CreatePost = () => {
                     <ModalCloseButton />
                     <ModalBody pb={6}>
                         <Textarea placeholder="Post caption..." value={caption} onChange={(e) => setCaption(e.target.value)} />
-                        <Input type="file" hidden ref={fileRef} onChange={handleMediaChange} accept="image/*,video/*" />  {/* Updated accept */}
+                        <Input type="file" hidden ref={fileRef} onChange={handleMediaChange} accept="image/*,video/*" />
                         <BsFillImageFill style={{ marginTop: "15px", marginLeft: "5px", cursor: "pointer" }} size={16} onClick={() => fileRef.current.click()} />
                         {selectedFile && (
                             <Flex mt={5} w={"full"} position={"relative"} justifyContent={"center"}>
@@ -106,7 +105,7 @@ function useCreatePost() {
     const userProfile = useUserProfileStore(state => state.userProfile);
     const { pathname } = useLocation();
 
-    const handleCreatePost = async (selectedFile, caption, mediaType) => {  // Updated signature
+    const handleCreatePost = async (selectedFile, caption, mediaType) => {
         if (isLoading) return;
         if (!selectedFile) throw new Error('Please select an image or video');
         setIsLoading(true);
@@ -121,11 +120,19 @@ function useCreatePost() {
         try {
             const postDocRef = await addDoc(collection(firestore, "posts"), newPost);
             const userDocRef = doc(firestore, "users", authUser.uid);
-            const fileRef = ref(storage, `posts/${postDocRef.id}`)
+            const fileRef = ref(storage, `posts/${postDocRef.id}`);
             await updateDoc(userDocRef, { posts: arrayUnion(postDocRef.id) });
-            await uploadString(fileRef, selectedFile, "data_url")
+
+            // Upload file as binary data
+            const blob = await fetch(selectedFile).then(res => res.blob());
+            await uploadBytes(fileRef, blob);
+
             const downloadURL = await getDownloadURL(fileRef);
-            await updateDoc(postDocRef, { fileURL: downloadURL });
+            if (mediaType === 'image') {
+                await updateDoc(postDocRef, { imageURL: downloadURL });
+            } else if (mediaType === 'video') {
+                await updateDoc(postDocRef, { videoURL: downloadURL });
+            }
 
             newPost.fileURL = downloadURL;
             if (userProfile === authUser.uid) createPost({ ...newPost, id: postDocRef.id });
