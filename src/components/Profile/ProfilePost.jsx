@@ -88,8 +88,8 @@ const ProfilePost = ({post}) => {
         {post.imageURL ? (
           <Image src={post.imageURL} alt={"FEED POST IMAGE"} />
         ) : (
-          post.fileURL && (
-            <video src={post.fileURL} type="video/mp4" />
+          post.videoURL && (
+            <video src={post.videoURL} type="video/mp4" />
 
           )
         )}
