@@ -88,10 +88,7 @@ const ProfilePost = ({post}) => {
         {post.imageURL ? (
           <Image src={post.imageURL} alt={"FEED POST IMAGE"} />
         ) : (
-          
             <video src={post.videoURL} type="video/mp4" />
-
-         
         )}
       </GridItem>
       <Modal isOpen={isOpen} onClose={onClose} isCentered={true} size={{base:"3xl",md:"5xl"}}>
