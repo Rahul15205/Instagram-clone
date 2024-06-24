@@ -109,10 +109,10 @@ const ProfilePost = ({post}) => {
                 {post.imageURL ? (
                   <Image src={post.imageURL} alt={"FEED POST IMAGE"} />
                 ) : (
-                  post.fileURL && (
+                  
                     <video controls src={post.fileURL} type="video/mp4" />
 
-                  )
+                  
                 )}
               </Flex>
               <Flex flex={1} flexDir={"column"} px={10} display={{base:"none",md:"flex"}}>
